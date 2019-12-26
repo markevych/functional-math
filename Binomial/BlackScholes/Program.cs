@@ -68,6 +68,17 @@ namespace BlackScholes
             return S * N(d1) - K * Math.Exp(-r * time) * N(d2);
         }
 
+        public static double option_price_delta_call_black_scholes(double S, // spot price
+                                                     double K, // Strike (exercise) price,
+                                                     double r, // interest rate
+                                                     double sigma, // volatility
+                                                     double time){ // time to maturity
+            double time_sqrt = Math.Sqrt(time);
+                    double d1 = (Math.Log(S / K) + r * time) / (sigma * time_sqrt) + 0.5 * sigma * time_sqrt;
+            double delta = N(d1);
+            return delta;
+        }
+
         public static void option_price_partials_call_black_scholes(double S, // spot price
                                                                     double K, // Strike (exercise) price,
                                                                     double r, // interest rate
